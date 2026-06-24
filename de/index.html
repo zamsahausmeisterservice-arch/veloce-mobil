@@ -31,6 +31,7 @@
 <link rel="stylesheet" href="/assets/css/annotated.css">
 <link rel="stylesheet" href="/assets/css/pricing2.css">
 <link rel="stylesheet" href="/assets/css/carousel.css">
+<link rel="stylesheet" href="/assets/css/fan-carousel.css">
 <link rel="stylesheet" href="/assets/css/motion-footer.css">
 <link rel="stylesheet" href="/assets/css/info-card.css">
 <link rel="stylesheet" href="/assets/css/tilt.css">
@@ -453,18 +454,43 @@
         <h2>Was Sie erwartet</h2>
       </div>
 
-      <div class="video-grid" data-reveal>
-        <div class="video-card" data-tilt>
-          <video controls preload="metadata" poster="/assets/video/aussenwaesche-poster.jpg">
-            <source src="/assets/video/aussenwaesche.mp4" type="video/mp4">
-          </video>
-          <span class="video-card__label">Aussenwäsche in Aktion</span>
+      <div class="fan-carousel" data-fan-carousel data-reveal>
+        <div class="fan-carousel__stage">
+          <div class="fan-carousel__card" data-fan-card>
+            <video controls preload="metadata" poster="/assets/video/aussenwaesche-poster.jpg">
+              <source src="/assets/video/aussenwaesche.mp4" type="video/mp4">
+            </video>
+            <span class="video-card__label">Aussenwäsche in Aktion</span>
+          </div>
+          <div class="fan-carousel__card" data-fan-card>
+            <video controls preload="metadata" poster="/assets/video/hochdruckreinigung-poster.jpg">
+              <source src="/assets/video/hochdruckreinigung.mp4" type="video/mp4">
+            </video>
+            <span class="video-card__label">Hochdruckreinigung im Einsatz</span>
+          </div>
+          <div class="fan-carousel__card" data-fan-card>
+            <video controls preload="metadata" poster="/assets/video/interieur-ambiente-poster.jpg">
+              <source src="/assets/video/interieur-ambiente.mp4" type="video/mp4">
+            </video>
+            <span class="video-card__label">Interieur in neuem Glanz</span>
+          </div>
+          <div class="fan-carousel__card" data-fan-card>
+            <video controls preload="metadata" poster="/assets/video/handwaesche-poster.jpg">
+              <source src="/assets/video/handwaesche.mp4" type="video/mp4">
+            </video>
+            <span class="video-card__label">Handwäsche im Detail</span>
+          </div>
+          <div class="fan-carousel__card" data-fan-card>
+            <video controls preload="metadata" poster="/assets/video/mobiles-equipment-poster.jpg">
+              <source src="/assets/video/mobiles-equipment.mp4" type="video/mp4">
+            </video>
+            <span class="video-card__label">Unser mobiles Equipment</span>
+          </div>
         </div>
-        <div class="video-card" data-tilt>
-          <video controls preload="metadata" poster="/assets/video/hochdruckreinigung-poster.jpg">
-            <source src="/assets/video/hochdruckreinigung.mp4" type="video/mp4">
-          </video>
-          <span class="video-card__label">Hochdruckreinigung im Einsatz</span>
+        <div class="fan-carousel__nav">
+          <button class="fan-carousel__arrow" data-fan-prev aria-label="Vorheriges Video">&lsaquo;</button>
+          <div class="fan-carousel__dots" data-fan-dots></div>
+          <button class="fan-carousel__arrow" data-fan-next aria-label="Nächstes Video">&rsaquo;</button>
         </div>
       </div>
       <p style="text-align:center;margin-top:var(--primitive-spacing-8);">
@@ -695,6 +721,7 @@
 <script src="/assets/js/annotated.js" defer></script>
 <script src="/assets/js/reveal.js" defer></script>
 <script src="/assets/js/carousel.js" defer></script>
+<script src="/assets/js/fan-carousel.js" defer></script>
 <script src="/assets/js/magnetic.js" defer></script>
 <script src="/assets/js/info-card.js" defer></script>
 <script src="/assets/js/tilt.js" defer></script>
