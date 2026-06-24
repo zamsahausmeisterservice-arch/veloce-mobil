@@ -1,0 +1,6 @@
+name = "veloce-mobil"
+compatibility_date = "2026-06-24"
+
+[assets]
+directory = "./"
+not_found_handling = "404-page"
