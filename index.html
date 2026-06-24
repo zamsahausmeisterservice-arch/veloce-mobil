@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="0; url=/de/">
+<title>Veloce Mobil</title>
+<link rel="canonical" href="https://veloce-mobil.ch/de/">
+<link rel="alternate" hreflang="de" href="https://veloce-mobil.ch/de/">
+<link rel="alternate" hreflang="fr" href="https://veloce-mobil.ch/fr/">
+<link rel="alternate" hreflang="it" href="https://veloce-mobil.ch/it/">
+<link rel="alternate" hreflang="en" href="https://veloce-mobil.ch/en/">
+<link rel="alternate" hreflang="x-default" href="https://veloce-mobil.ch/de/">
+<script>
+(function () {
+  var supported = ["de", "fr", "it", "en"];
+  var browserLangs = navigator.languages || [navigator.language || "de"];
+  var target = "de";
+  for (var i = 0; i < browserLangs.length; i++) {
+    var code = (browserLangs[i] || "").slice(0, 2).toLowerCase();
+    if (supported.indexOf(code) !== -1) {
+      target = code;
+      break;
+    }
+  }
+  window.location.replace("/" + target + "/" + window.location.hash);
+})();
+</script>
+</head>
+<body>
+  <p>Weiterleitung … / Redirecting … <a href="/de/">Veloce Mobil</a></p>
+</body>
+</html>

@@ -1,0 +1,98 @@
+/* =========================================================
+   Feature-Carousel fuer "In drei Schritten..." (Vorbild:
+   21st.dev/0xUrvish/feature-carousel) - ein Slide sichtbar,
+   Pfeile + Dots zum Navigieren, weicher Slide-Uebergang.
+   ========================================================= */
+
+.carousel {
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.carousel__viewport {
+  overflow: hidden;
+  border-radius: var(--primitive-radius-2xl);
+}
+
+.carousel__track {
+  display: flex;
+  transition: transform 500ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.carousel__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  padding: var(--primitive-spacing-10) var(--primitive-spacing-8);
+  text-align: center;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+}
+
+.carousel__slide .step__number {
+  font-size: var(--primitive-fontSize-5xl);
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-border-strong);
+  display: block;
+  margin-bottom: var(--primitive-spacing-3);
+}
+
+.carousel__slide h3 {
+  margin-bottom: var(--primitive-spacing-2);
+}
+
+.carousel__slide p {
+  max-width: 380px;
+  margin-inline: auto;
+}
+
+.carousel__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-spacing-5);
+  margin-top: var(--primitive-spacing-8);
+}
+
+.carousel__arrow {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color var(--primitive-duration-fast) ease, background-color var(--primitive-duration-fast) ease;
+}
+
+.carousel__arrow:hover {
+  border-color: var(--color-accent);
+  background: rgb(14 210 234 / 0.08);
+}
+
+.carousel__arrow svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+}
+
+.carousel__dots {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-spacing-2);
+}
+
+.carousel__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--color-border-strong);
+  transition: width var(--primitive-duration-normal) ease, background-color var(--primitive-duration-normal) ease;
+}
+
+.carousel__dot[aria-current="true"] {
+  width: 24px;
+  background: var(--color-accent);
+}

@@ -1,0 +1,6 @@
+.agents/
+.claude/
+CLAUDE.md
+skills-lock.json
+design-tokens.json
+.DS_Store

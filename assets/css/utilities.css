@@ -1,0 +1,111 @@
+.container {
+  width: 100%;
+  max-width: 1180px;
+  margin-inline: auto;
+  padding-inline: var(--primitive-spacing-6);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.section {
+  padding-block: var(--spacing-section-sm);
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-block: var(--spacing-section);
+  }
+}
+
+.section-head {
+  max-width: 640px;
+  margin-bottom: var(--primitive-spacing-12);
+}
+
+.section-head--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-spacing-2);
+  max-width: 100%;
+  color: var(--color-accent);
+  font-size: var(--primitive-fontSize-sm);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  margin-bottom: var(--primitive-spacing-3);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 12px 2px var(--color-accent);
+}
+
+.text-muted {
+  color: var(--color-muted-foreground);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .hide-desktop {
+    display: none !important;
+  }
+}
+
+/* ===== Sitewide Scroll-Reveal =====
+   [data-reveal] auf einen Grid-/Listen-Container setzen - jedes
+   direkte Kind blendet beim Einscrollen gestaffelt ein. */
+[data-reveal] > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+
+[data-reveal].is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal] > *:nth-child(1) { transition-delay: 0ms; }
+[data-reveal] > *:nth-child(2) { transition-delay: 90ms; }
+[data-reveal] > *:nth-child(3) { transition-delay: 180ms; }
+[data-reveal] > *:nth-child(4) { transition-delay: 270ms; }
+[data-reveal] > *:nth-child(5) { transition-delay: 360ms; }
+[data-reveal] > *:nth-child(6) { transition-delay: 450ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] > * {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

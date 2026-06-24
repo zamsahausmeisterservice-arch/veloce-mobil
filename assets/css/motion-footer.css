@@ -1,0 +1,114 @@
+/* =========================================================
+   Motion-Footer (Vorbild: 21st.dev/easemize/motion-footer):
+   Aurora-Glow im Hintergrund, diagonale Marquee-Leiste, ein
+   "magnetischer" CTA-Button und eine grosse Wortmarke unten.
+   ========================================================= */
+
+.site-footer {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-aurora {
+  position: absolute;
+  inset: -20% -10% auto -10%;
+  height: 480px;
+  background:
+    radial-gradient(circle at 30% 30%, rgb(38 81 87 / 0.35), transparent 60%),
+    radial-gradient(circle at 70% 50%, rgb(14 210 234 / 0.18), transparent 55%);
+  filter: blur(10px);
+  animation: footer-aurora-drift 18s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes footer-aurora-drift {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(3%, 4%) scale(1.08); }
+}
+
+.footer-cta {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding-bottom: var(--primitive-spacing-16);
+}
+
+.footer-cta h2 {
+  margin-bottom: var(--primitive-spacing-6);
+}
+
+.footer-cta__btn {
+  display: inline-flex;
+  transition: transform 200ms ease;
+}
+
+.footer-marquee {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  transform: rotate(-1.5deg);
+  margin-block: var(--primitive-spacing-8);
+  border-block: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.footer-marquee__track {
+  display: inline-block;
+  padding-block: var(--primitive-spacing-3);
+  animation: footer-marquee-scroll 22s linear infinite;
+}
+
+.footer-marquee__track span {
+  display: inline-block;
+  padding-inline: var(--primitive-spacing-6);
+  font-size: var(--primitive-fontSize-sm);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+}
+
+.footer-marquee__track span::after {
+  content: "✦";
+  margin-left: var(--primitive-spacing-6);
+  color: var(--color-accent);
+}
+
+@keyframes footer-marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.footer-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.footer-wordmark {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(3rem, 14vw, 9rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-align: center;
+  line-height: 1;
+  margin-block: var(--primitive-spacing-8) var(--primitive-spacing-4);
+  background: linear-gradient(180deg, var(--color-foreground) 0%, rgb(237 239 239 / 0.15) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  user-select: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-aurora,
+  .footer-marquee__track {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-marquee { transform: rotate(-2.5deg); }
+}

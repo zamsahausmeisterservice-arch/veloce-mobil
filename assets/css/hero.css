@@ -1,0 +1,109 @@
+/* =========================================================
+   Hero — normaler Scroll-Fluss: Text + Auto sitzen unterhalb
+   des fixierten Headers und scrollen ganz normal mit der Seite
+   nach oben weg, wobei der (deckende) Header sie von oben nach
+   unten "verschluckt". Kein Glow unter dem Auto - reines Schwarz.
+   ========================================================= */
+
+.hero {
+  position: relative;
+  background: var(--color-background);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 140px;
+  padding-bottom: 64px;
+  overflow: hidden;
+}
+
+.hero__text {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+  flex-shrink: 0;
+  margin-bottom: clamp(1.5rem, 5vw, 3rem);
+}
+
+.hero__text .eyebrow {
+  justify-content: center;
+}
+
+.hero__text h1 {
+  margin-bottom: var(--primitive-spacing-5);
+}
+
+.hero__text h1 .accent {
+  color: var(--color-accent);
+}
+
+.hero__text p {
+  max-width: 560px;
+  margin-inline: auto;
+  font-size: var(--primitive-fontSize-lg);
+  margin-bottom: var(--primitive-spacing-8);
+}
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-spacing-4);
+  flex-wrap: wrap;
+}
+
+.hero__car-wrap {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+}
+
+.hero__car-ground {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  width: 56%;
+  height: 60px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse 50% 100% at center, rgb(0 0 0 / 0.7), transparent 75%);
+}
+
+.hero__car-img {
+  position: relative;
+  z-index: 1;
+  width: min(1300px, 88vw);
+  filter: drop-shadow(0 30px 40px rgb(0 0 0 / 0.6));
+}
+
+.hero__scroll-cue {
+  position: relative;
+  z-index: 2;
+  margin-top: var(--primitive-spacing-8);
+  align-self: center;
+  font-size: var(--primitive-fontSize-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--primitive-spacing-2);
+}
+
+.hero__scroll-cue::after {
+  content: "";
+  width: 1px;
+  height: 28px;
+  background: linear-gradient(to bottom, var(--color-accent), transparent);
+}
+
+@media (max-width: 700px) {
+  .hero { padding-top: 110px; padding-bottom: 40px; }
+  .hero__car-wrap { min-height: 220px; }
+  .hero__car-img { width: 94vw; }
+  .hero__scroll-cue { display: none; }
+}

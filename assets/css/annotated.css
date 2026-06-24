@@ -1,0 +1,147 @@
+/* =========================================================
+   Annotierte Auto-Grafik fuer die "Vorteile"-Sektion - radiale
+   Anordnung (nach dem Vorbild "radial-orbital-timeline"): das
+   saubere Auto in der Mitte, 4 Punkte direkt am Fahrzeug, die
+   Karten liegen aussen am Rand, je per Linie mit ihrem Punkt
+   verbunden. Auf Mobile faellt es auf eine Karten-Liste zurueck.
+   ========================================================= */
+
+.annotated {
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-block: var(--primitive-spacing-12) var(--primitive-spacing-8);
+}
+
+.annotated__car-wrap {
+  position: relative;
+  width: min(720px, 100%);
+  aspect-ratio: 1 / 1;
+  margin-inline: auto;
+}
+
+.annotated__orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 64%;
+  height: 64%;
+  transform: translate(-50%, -50%);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: 50%;
+}
+
+.annotated__car {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 52%;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 20px 26px rgb(0 0 0 / 0.6));
+}
+
+.annotated__lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.annotated__lines line {
+  stroke: var(--color-border-strong);
+  stroke-width: 0.4;
+  vector-effect: non-scaling-stroke;
+}
+
+.annotated__dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 5px rgb(14 210 234 / 0.18);
+  transform: translate(-50%, -50%);
+}
+
+.annotated__dot--tl { top: 28%; left: 28%; }
+.annotated__dot--tr { top: 28%; left: 72%; }
+.annotated__dot--bl { top: 72%; left: 28%; }
+.annotated__dot--br { top: 72%; left: 72%; }
+
+.annotated__point {
+  position: absolute;
+  width: 200px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.annotated.is-visible .annotated__point {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.annotated.is-visible .annotated__point--tl { transition-delay: 80ms; }
+.annotated.is-visible .annotated__point--tr { transition-delay: 200ms; }
+.annotated.is-visible .annotated__point--bl { transition-delay: 320ms; }
+.annotated.is-visible .annotated__point--br { transition-delay: 440ms; }
+
+.annotated__point--tl { bottom: 77%; left: -5%;  text-align: right; }
+.annotated__point--tr { bottom: 77%; left: 77%; text-align: left; }
+.annotated__point--bl { top: 77%; left: -5%;  text-align: right; }
+.annotated__point--br { top: 77%; left: 77%; text-align: left; }
+
+.annotated__card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--primitive-radius-lg);
+  padding: var(--primitive-spacing-4);
+  text-align: left;
+}
+
+.annotated__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--primitive-radius-md);
+  background: rgb(14 210 234 / 0.1);
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--primitive-spacing-3);
+}
+
+.annotated__icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+}
+
+.annotated__card h3 {
+  font-size: var(--primitive-fontSize-base);
+  margin-bottom: var(--primitive-spacing-1);
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-spacing-2);
+}
+
+.annotated__card p {
+  font-size: var(--primitive-fontSize-sm);
+  margin: 0;
+}
+
+.annotated__fallback {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .annotated__car-wrap,
+  .annotated__orbit,
+  .annotated__lines,
+  .annotated__dot,
+  .annotated__point {
+    display: none;
+  }
+  .annotated__fallback { display: grid; }
+}

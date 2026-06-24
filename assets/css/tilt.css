@@ -1,0 +1,52 @@
+/* =========================================================
+   3D-Tilt fuer Kacheln (Vorbild: 21st.dev/ruixenui/credit-card-hero):
+   die Karte kippt leicht in Richtung des Mauszeigers und bekommt
+   einen weichen Glanz-Schein, der dem Cursor folgt - wie eine
+   Kreditkarte, die im Licht gedreht wird. tilt.js setzt die
+   Custom Properties, diese Regeln bleiben die einzige Quelle
+   fuer "transform", damit es keine Konflikte mit anderen
+   Hover-Regeln gibt.
+   ========================================================= */
+
+[data-tilt] {
+  --rx: 0deg;
+  --ry: 0deg;
+  --tilt-scale: 1;
+  --tilt-y: 0px;
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+  transform: perspective(900px) translateY(var(--tilt-y)) rotateX(var(--rx)) rotateY(var(--ry)) scale(var(--tilt-scale));
+  transition: transform 350ms ease;
+  will-change: transform;
+}
+
+[data-tilt].is-tilting {
+  transition: transform 60ms linear;
+}
+
+[data-tilt]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--mx) var(--my), rgb(255 255 255 / 0.14), transparent 60%);
+  opacity: 0;
+  transition: opacity 250ms ease;
+  pointer-events: none;
+}
+
+[data-tilt].is-tilting::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce), (pointer: coarse) {
+  [data-tilt] {
+    transform: none;
+    transition: none;
+  }
+  [data-tilt]::before {
+    display: none;
+  }
+}

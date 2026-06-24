@@ -1,0 +1,321 @@
+/* ===== Header — schwebende Glass-Pill (Vorbild: 21st.dev/efferd/header-2) =====
+   WICHTIG: backdrop-filter/transform duerfen NICHT direkt auf .site-header
+   liegen, da sie einen neuen containing block fuer position:fixed-Kinder
+   erzeugen wuerden (bricht das mobile Vollbild-Menue, das ebenfalls
+   position:fixed nutzt). Der Glas-Look liegt daher auf einem ::before. */
+.site-header {
+  position: fixed;
+  top: var(--primitive-spacing-4);
+  left: var(--primitive-spacing-4);
+  right: var(--primitive-spacing-4);
+  z-index: 100;
+  max-width: 1180px;
+  margin-inline: auto;
+  padding-block: var(--primitive-spacing-3);
+  transition: top var(--primitive-duration-normal) ease,
+              padding-block var(--primitive-duration-normal) ease;
+}
+
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: var(--primitive-radius-full);
+  background: rgb(8 12 13 / 0.55);
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  transition: background-color var(--primitive-duration-normal) ease,
+              border-color var(--primitive-duration-normal) ease,
+              box-shadow var(--primitive-duration-normal) ease;
+}
+
+.site-header.is-scrolled {
+  top: var(--primitive-spacing-2);
+  padding-block: var(--primitive-spacing-2);
+}
+
+.site-header.is-scrolled::before {
+  background: rgb(8 12 13 / 0.82);
+  border-color: var(--color-border-strong);
+  box-shadow: 0 16px 40px -16px rgb(0 0 0 / 0.55);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-spacing-6);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.brand img {
+  height: 34px;
+  width: auto;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-spacing-8);
+}
+
+.main-nav__list {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-spacing-6);
+}
+
+.main-nav__list a {
+  font-size: var(--primitive-fontSize-sm);
+  font-weight: 600;
+  color: var(--color-foreground);
+  opacity: 0.85;
+  transition: opacity var(--primitive-duration-fast) ease, color var(--primitive-duration-fast) ease;
+}
+
+.main-nav__list a:hover {
+  opacity: 1;
+  color: var(--color-accent);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-spacing-3);
+}
+
+.nav-toggle {
+  display: none;
+  padding: var(--primitive-spacing-2);
+}
+
+.nav-toggle__bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-foreground);
+  margin: 5px 0;
+  transition: transform var(--primitive-duration-fast) ease, opacity var(--primitive-duration-fast) ease;
+}
+
+@media (max-width: 900px) {
+  .main-nav {
+    position: fixed;
+    inset: 0;
+    top: 0;
+    background: var(--color-background);
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--primitive-spacing-10);
+    transform: translateX(100%);
+    transition: transform var(--primitive-duration-slow) ease;
+    visibility: hidden;
+  }
+
+  .main-nav.is-open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .main-nav__list {
+    flex-direction: column;
+    gap: var(--primitive-spacing-8);
+  }
+
+  .main-nav__list a {
+    font-size: var(--primitive-fontSize-2xl);
+  }
+
+  .main-nav .header-actions {
+    flex-direction: column;
+  }
+
+  .nav-toggle {
+    display: block;
+    position: relative;
+    z-index: 101;
+  }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+/* ===== Language switcher ===== */
+.lang-switch {
+  position: relative;
+}
+
+.lang-switch__current {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-spacing-1);
+  font-size: var(--primitive-fontSize-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: var(--primitive-spacing-2) var(--primitive-spacing-3);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--primitive-radius-full);
+}
+
+.lang-switch__menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--primitive-radius-lg);
+  box-shadow: var(--primitive-shadow-lg);
+  padding: var(--primitive-spacing-2);
+  min-width: 140px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity var(--primitive-duration-fast) ease, transform var(--primitive-duration-fast) ease, visibility var(--primitive-duration-fast);
+}
+
+.lang-switch.is-open .lang-switch__menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.lang-switch__menu a {
+  display: block;
+  padding: var(--primitive-spacing-2) var(--primitive-spacing-3);
+  border-radius: var(--primitive-radius-md);
+  font-size: var(--primitive-fontSize-sm);
+}
+
+.lang-switch__menu a:hover,
+.lang-switch__menu a[aria-current="true"] {
+  background: var(--color-muted);
+  color: var(--color-accent);
+}
+
+/* ===== Sections / grids ===== */
+.grid {
+  display: grid;
+  gap: var(--primitive-spacing-6);
+}
+
+.grid--4 { grid-template-columns: repeat(4, 1fr); }
+.grid--3 { grid-template-columns: repeat(3, 1fr); }
+.grid--2 { grid-template-columns: repeat(2, 1fr); }
+
+@media (max-width: 900px) {
+  .grid--4 { grid-template-columns: repeat(2, 1fr); }
+  .grid--3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .grid--4,
+  .grid--3,
+  .grid--2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.section--alt {
+  background: linear-gradient(180deg, transparent, rgb(255 255 255 / 0.02), transparent);
+}
+
+/* ===== Footer ===== */
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--primitive-spacing-16) var(--primitive-spacing-8);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: var(--primitive-spacing-10);
+  margin-bottom: var(--primitive-spacing-12);
+}
+
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-col h4 {
+  font-size: var(--primitive-fontSize-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-muted-foreground);
+  margin-bottom: var(--primitive-spacing-4);
+}
+
+.footer-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-spacing-3);
+}
+
+.footer-col a:hover {
+  color: var(--color-accent);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--primitive-spacing-4);
+  padding-top: var(--primitive-spacing-8);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--primitive-fontSize-sm);
+  color: var(--color-muted-foreground);
+}
+
+.footer-bottom__legal {
+  display: flex;
+  gap: var(--primitive-spacing-5);
+  flex-wrap: wrap;
+}
+
+/* ===== Floating WhatsApp button ===== */
+.whatsapp-float {
+  position: fixed;
+  bottom: var(--primitive-spacing-6);
+  right: var(--primitive-spacing-6);
+  z-index: 90;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--primitive-shadow-lg);
+  transition: transform var(--primitive-duration-fast) ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.08);
+}
+
+.whatsapp-float svg {
+  width: 28px;
+  height: 28px;
+  fill: #fff;
+}

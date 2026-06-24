@@ -1,0 +1,88 @@
+/* =========================================================
+   Info-Trigger + Hover/Click-Card (Vorbild: 21st.dev/jshguo/
+   interfaces-hover-card): ein kleiner (i)-Button, der per Klick
+   eine Detail-Karte aufklappt - haelt die Hauptseite knapp,
+   liefert aber auf Wunsch die volle Erklaerung.
+   ========================================================= */
+
+.info-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.info-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-accent);
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: border-color var(--primitive-duration-fast) ease, background-color var(--primitive-duration-fast) ease;
+}
+
+.info-trigger:hover,
+.info-trigger[aria-expanded="true"] {
+  background: rgb(14 210 234 / 0.12);
+  border-color: var(--color-accent);
+}
+
+.info-card {
+  position: absolute;
+  z-index: 30;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  width: min(280px, 80vw);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--primitive-radius-lg);
+  padding: var(--primitive-spacing-4);
+  box-shadow: var(--primitive-shadow-lg);
+  font-size: var(--primitive-fontSize-sm);
+  color: var(--color-foreground);
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 4px);
+  transition: opacity 160ms ease, transform 160ms ease, visibility 160ms;
+}
+
+.info-card.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+.info-card::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--card-border);
+}
+
+.info-card p {
+  margin: 0;
+  color: var(--color-foreground);
+}
+
+.info-card p + p {
+  margin-top: var(--primitive-spacing-2);
+}
+
+.info-card strong {
+  color: var(--color-accent);
+}
+
+@media (max-width: 480px) {
+  .info-card { left: 0; transform: translate(0, 4px); }
+  .info-card.is-open { transform: translate(0, 0); }
+  .info-card::after { left: 16px; }
+}
