@@ -77,6 +77,7 @@
   z-index: 1;
   width: min(1300px, 88vw);
   filter: drop-shadow(0 30px 40px rgb(0 0 0 / 0.6));
+  will-change: transform;
 }
 
 .hero__scroll-cue {
