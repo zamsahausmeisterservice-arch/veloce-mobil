@@ -385,16 +385,19 @@
         <h2>Transparent &amp; fair</h2>
       </div>
 
-      <div class="pricing2__toggle" data-pricing-toggle role="tablist" aria-label="Fahrzeuggrösse wählen" data-prices='{
-        "klein":  {"basis": [129.99, "ca. 1 Std."],         "standard": [289.99, "ca. 2 Std."],   "premium": [389.99, "ca. 3 Std."]},
-        "mittel": {"basis": [199.99, "ca. 1.5 Std."],        "standard": [359.99, "ca. 3 Std."],   "premium": [459.99, "ca. 4 Std."]},
-        "gross":  {"basis": [259.99, "ca. 2 Std."],          "standard": [419.99, "ca. 3.5 Std."], "premium": [519.99, "ca. 4.5 Std."]},
-        "xl":     {"basis": [309.99, "ca. 2 Std. 15 Min."],  "standard": [469.99, "ca. 4 Std."],   "premium": [569.99, "ca. 5.5 Std."]}
-      }'>
-        <button data-size="klein" aria-selected="true">Kleinwagen</button>
-        <button data-size="mittel" aria-selected="false">Mittelklasse</button>
-        <button data-size="gross" aria-selected="false">Grosse Autos</button>
-        <button data-size="xl" aria-selected="false">Extra-grosse Autos</button>
+      <div class="pricing2__toggle-wrap">
+        <div class="pricing2__toggle" data-pricing-toggle role="tablist" aria-label="Fahrzeuggrösse wählen" data-prices='{
+          "klein":  {"basis": [129.99, "ca. 1 Std."],         "standard": [289.99, "ca. 2 Std."],   "premium": [389.99, "ca. 3 Std."]},
+          "mittel": {"basis": [199.99, "ca. 1.5 Std."],        "standard": [359.99, "ca. 3 Std."],   "premium": [459.99, "ca. 4 Std."]},
+          "gross":  {"basis": [259.99, "ca. 2 Std."],          "standard": [419.99, "ca. 3.5 Std."], "premium": [519.99, "ca. 4.5 Std."]},
+          "xl":     {"basis": [309.99, "ca. 2 Std. 15 Min."],  "standard": [469.99, "ca. 4 Std."],   "premium": [569.99, "ca. 5.5 Std."]}
+        }'>
+          <span class="pricing2__indicator" data-pricing-indicator></span>
+          <button data-size="klein" aria-selected="true">Kleinwagen</button>
+          <button data-size="mittel" aria-selected="false">Mittelklasse</button>
+          <button data-size="gross" aria-selected="false">Grosse Autos</button>
+          <button data-size="xl" aria-selected="false">Extra-grosse Autos</button>
+        </div>
       </div>
 
       <div class="pricing2__grid" data-reveal>

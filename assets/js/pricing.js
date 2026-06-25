@@ -1,13 +1,20 @@
 /* Fahrzeuggroessen-Umschalter fuer die 3 Tarif-Karten (Basis/
-   Standard/Premium): die Zahl rollt beim Wechsel sanft vom alten
-   zum neuen Preis (statt Fade), die Dauer wechselt kurz ueberblendet. */
+   Standard/Premium): ein Pill-Indikator gleitet zum aktiven Button,
+   die Zahl rollt beim Wechsel sanft vom alten zum neuen Preis. */
 (function () {
   var toggle = document.querySelector("[data-pricing-toggle]");
   var cards = document.querySelectorAll("[data-pricing-card]");
   if (!toggle || !cards.length) return;
 
   var prices = JSON.parse(toggle.getAttribute("data-prices") || "{}");
-  var buttons = toggle.querySelectorAll("button");
+  var buttons = Array.from(toggle.querySelectorAll("button"));
+  var indicator = toggle.querySelector("[data-pricing-indicator]");
+
+  function moveIndicator(btn) {
+    if (!indicator) return;
+    indicator.style.transform = "translateX(" + btn.offsetLeft + "px)";
+    indicator.style.width = btn.offsetWidth + "px";
+  }
 
   function animateNumber(el, from, to, duration) {
     var start = null;
@@ -49,7 +56,15 @@
     btn.addEventListener("click", function () {
       buttons.forEach(function (b) { b.setAttribute("aria-selected", "false"); });
       btn.setAttribute("aria-selected", "true");
+      moveIndicator(btn);
       applySize(btn.getAttribute("data-size"));
     });
   });
+
+  function currentActive() {
+    return buttons.filter(function (b) { return b.getAttribute("aria-selected") === "true"; })[0] || buttons[0];
+  }
+
+  requestAnimationFrame(function () { moveIndicator(currentActive()); });
+  window.addEventListener("resize", function () { moveIndicator(currentActive()); });
 })();

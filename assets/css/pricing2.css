@@ -6,28 +6,49 @@
    Fade-Animation, die "Standard"-Karte ist hervorgehoben.
    ========================================================= */
 
-.pricing2__toggle {
+.pricing2__toggle-wrap {
   display: flex;
   justify-content: center;
-  gap: var(--primitive-spacing-2);
-  flex-wrap: wrap;
   margin-bottom: var(--primitive-spacing-10);
 }
 
+.pricing2__toggle {
+  position: relative;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-spacing-1);
+  padding: var(--primitive-spacing-1);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--primitive-radius-full);
+}
+
+.pricing2__indicator {
+  position: absolute;
+  top: var(--primitive-spacing-1);
+  bottom: var(--primitive-spacing-1);
+  left: 0;
+  border-radius: var(--primitive-radius-full);
+  background: var(--color-accent);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+}
+
 .pricing2__toggle button {
+  position: relative;
+  z-index: 1;
   padding: var(--primitive-spacing-2) var(--primitive-spacing-5);
   border-radius: var(--primitive-radius-full);
-  border: 1px solid var(--color-border-strong);
+  border: none;
+  background: transparent;
   font-size: var(--primitive-fontSize-sm);
   font-weight: 700;
-  color: var(--color-foreground);
-  transition: background-color var(--primitive-duration-fast) ease, color var(--primitive-duration-fast) ease, border-color var(--primitive-duration-fast) ease;
+  color: var(--color-muted-foreground);
+  transition: color var(--primitive-duration-fast) ease;
 }
 
 .pricing2__toggle button[aria-selected="true"] {
-  background: var(--color-accent);
   color: var(--color-accent-foreground);
-  border-color: var(--color-accent);
 }
 
 .pricing2__grid {
@@ -131,16 +152,19 @@
 
 .pricing2__features li {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--primitive-spacing-3);
   font-size: var(--primitive-fontSize-sm);
 }
 
 .pricing2__features svg {
   flex-shrink: 0;
-  width: 18px;
-  height: 18px;
-  margin-top: 2px;
+  width: 22px;
+  height: 22px;
+  padding: 5px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: rgb(14 210 234 / 0.12);
   color: var(--color-accent);
 }
 
