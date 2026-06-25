@@ -1,6 +1,6 @@
 /* Fahrzeuggroessen-Umschalter fuer die 3 Tarif-Karten (Basis/
-   Standard/Premium): wechselt Preis + Dauer je Karte mit einer
-   kurzen Fade-Animation statt eines Tabellen-Umbaus. */
+   Standard/Premium): die Zahl rollt beim Wechsel sanft vom alten
+   zum neuen Preis (statt Fade), die Dauer wechselt kurz ueberblendet. */
 (function () {
   var toggle = document.querySelector("[data-pricing-toggle]");
   var cards = document.querySelectorAll("[data-pricing-card]");
@@ -8,6 +8,22 @@
 
   var prices = JSON.parse(toggle.getAttribute("data-prices") || "{}");
   var buttons = toggle.querySelectorAll("button");
+
+  function animateNumber(el, from, to, duration) {
+    var start = null;
+    function step(ts) {
+      if (start === null) start = ts;
+      var p = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = (from + (to - from) * eased).toFixed(2);
+      if (p < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = to.toFixed(2);
+      }
+    }
+    requestAnimationFrame(step);
+  }
 
   function applySize(size) {
     cards.forEach(function (card) {
@@ -17,14 +33,13 @@
 
       var amountEl = card.querySelector("[data-price]");
       var durationEl = card.querySelector("[data-duration]");
+      var from = parseFloat(amountEl.textContent) || 0;
 
-      amountEl.classList.add("is-updating");
+      animateNumber(amountEl, from, data[0], 500);
+
       durationEl.classList.add("is-updating");
-
       setTimeout(function () {
-        amountEl.textContent = data[0];
         durationEl.textContent = data[1];
-        amountEl.classList.remove("is-updating");
         durationEl.classList.remove("is-updating");
       }, 160);
     });

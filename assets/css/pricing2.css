@@ -44,11 +44,20 @@
   border-radius: var(--primitive-radius-2xl);
   padding: var(--primitive-spacing-8) var(--primitive-spacing-6);
   text-align: center;
+  transition: transform var(--primitive-duration-normal) ease, box-shadow var(--primitive-duration-normal) ease;
+}
+
+.pricing2__card:hover {
+  transform: translateY(-4px);
 }
 
 .pricing2__card--popular {
   border-color: var(--color-accent);
   box-shadow: var(--primitive-shadow-glow);
+}
+
+.pricing2__card--popular:hover {
+  transform: translateY(-6px) scale(1.015);
 }
 
 @media (min-width: 901px) {
@@ -93,12 +102,6 @@
   font-size: var(--primitive-fontSize-5xl);
   font-weight: 800;
   letter-spacing: -0.02em;
-  transition: opacity 180ms ease, transform 180ms ease;
-}
-
-.pricing2__amount.is-updating {
-  opacity: 0;
-  transform: translateY(6px);
 }
 
 .pricing2__currency {
