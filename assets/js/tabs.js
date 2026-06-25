@@ -28,7 +28,6 @@
         p.classList.toggle("is-active", p.getAttribute("data-tab-panel") === target);
       });
       moveIndicator(tab);
-      tab.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
     }
 
     function stopAuto() {
@@ -48,6 +47,7 @@
     triggers.forEach(function (tab) {
       tab.addEventListener("click", function () {
         activate(tab);
+        tab.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
         startAuto();
       });
     });
