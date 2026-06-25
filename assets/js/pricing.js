@@ -58,12 +58,16 @@
       btn.setAttribute("aria-selected", "true");
       moveIndicator(btn);
       applySize(btn.getAttribute("data-size"));
+      btn.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
     });
   });
 
   function currentActive() {
     return buttons.filter(function (b) { return b.getAttribute("aria-selected") === "true"; })[0] || buttons[0];
   }
+
+  var toggleWrap = toggle.closest(".pricing2__toggle-wrap");
+  if (toggleWrap) toggleWrap.scrollLeft = 0;
 
   requestAnimationFrame(function () { moveIndicator(currentActive()); });
   window.addEventListener("resize", function () { moveIndicator(currentActive()); });

@@ -31,7 +31,11 @@
 
 .hero__text h1 {
   margin-bottom: var(--primitive-spacing-5);
-  min-height: 1.2em;
+  min-height: 2.3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .hero__morph {

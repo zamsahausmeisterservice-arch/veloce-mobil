@@ -8,14 +8,23 @@
 
 .pricing2__toggle-wrap {
   display: flex;
-  justify-content: center;
+  justify-content: safe center;
   margin-bottom: var(--primitive-spacing-10);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+
+.pricing2__toggle-wrap::-webkit-scrollbar {
+  display: none;
 }
 
 .pricing2__toggle {
   position: relative;
   display: inline-flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
   gap: var(--primitive-spacing-1);
   padding: var(--primitive-spacing-1);
   background: var(--card-bg);
@@ -44,6 +53,7 @@
   font-size: var(--primitive-fontSize-sm);
   font-weight: 700;
   color: var(--color-muted-foreground);
+  white-space: nowrap;
   transition: color var(--primitive-duration-fast) ease;
 }
 

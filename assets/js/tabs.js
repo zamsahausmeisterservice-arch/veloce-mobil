@@ -28,6 +28,7 @@
         p.classList.toggle("is-active", p.getAttribute("data-tab-panel") === target);
       });
       moveIndicator(tab);
+      tab.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
     }
 
     function stopAuto() {
@@ -50,6 +51,9 @@
         startAuto();
       });
     });
+
+    var listWrap = root.querySelector(".tabs__list-wrap");
+    if (listWrap) listWrap.scrollLeft = 0;
 
     requestAnimationFrame(function () { moveIndicator(currentActive()); });
     window.addEventListener("resize", function () { moveIndicator(currentActive()); });
