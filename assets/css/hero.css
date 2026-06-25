@@ -31,9 +31,15 @@
 
 .hero__text h1 {
   margin-bottom: var(--primitive-spacing-5);
+  min-height: 1.2em;
+}
+
+.hero__morph {
+  display: inline-block;
   filter: url(#hero-goo);
 }
 
+.hero__morph.is-accent,
 .hero__text h1 .accent {
   color: var(--color-accent);
 }

@@ -1,53 +1,76 @@
-/* Loest die Hero-Ueberschrift beim Erscheinen aus einem "goo"-Blob
-   heraus auf (SVG-Filter #hero-goo, Basis-Blur per CSS in hero.css).
-   Startet, sobald der Preloader sich wegschiebt (Klasse "is-leaving"),
-   damit die Aufloesung mit dem Sichtbarwerden synchron lauft. */
+/* Cycelt die Hero-Ueberschrift endlos durch mehrere Phrasen, jede
+   loest sich aus einem "goo"-Blob heraus auf und verschwindet nach
+   ein paar Sekunden wieder darin (SVG-Filter #hero-goo). Start ist
+   an das Wegschieben des Preloaders gekoppelt. */
 (function () {
-  var heading = document.querySelector(".hero__text h1");
+  var el = document.querySelector("[data-hero-morph]");
   var blur = document.querySelector("#hero-goo feGaussianBlur");
-  if (!heading || !blur) return;
+  if (!el || !blur) return;
+
+  var phrases = JSON.parse(el.getAttribute("data-phrases") || "[]");
+  var accents = JSON.parse(el.getAttribute("data-accent") || "[]");
+  if (!phrases.length) return;
+
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    heading.style.filter = "none";
+    el.textContent = phrases.join(" ");
     return;
   }
 
-  var duration = 900;
-  var started = false;
+  var holdTime = 1800;
+  var transitionTime = 450;
+  var index = 0;
 
-  function run() {
-    if (started) return;
-    started = true;
+  function setPhrase(i) {
+    el.textContent = phrases[i];
+    el.classList.toggle("is-accent", !!accents[i]);
+  }
+
+  function animateBlur(from, to, duration, onDone) {
     var start = null;
-
     function step(ts) {
       if (start === null) start = ts;
-      var progress = Math.min((ts - start) / duration, 1);
-      blur.setAttribute("stdDeviation", (12 * (1 - progress)).toFixed(2));
-      if (progress < 1) {
+      var p = Math.min((ts - start) / duration, 1);
+      blur.setAttribute("stdDeviation", (from + (to - from) * p).toFixed(2));
+      if (p < 1) {
         requestAnimationFrame(step);
-      } else {
-        heading.style.filter = "none";
+      } else if (onDone) {
+        onDone();
       }
     }
-
     requestAnimationFrame(step);
+  }
+
+  function cycle() {
+    animateBlur(0, 12, transitionTime, function () {
+      index = (index + 1) % phrases.length;
+      setPhrase(index);
+      animateBlur(12, 0, transitionTime, function () {
+        setTimeout(cycle, holdTime);
+      });
+    });
+  }
+
+  function start() {
+    setPhrase(0);
+    animateBlur(12, 0, transitionTime, function () {
+      setTimeout(cycle, holdTime);
+    });
   }
 
   var pre = document.querySelector("[data-preloader]");
   if (!pre) {
-    run();
+    start();
     return;
   }
-
   if (pre.classList.contains("is-leaving")) {
-    run();
+    start();
     return;
   }
 
   var observer = new MutationObserver(function () {
     if (!document.body.contains(pre) || pre.classList.contains("is-leaving")) {
       observer.disconnect();
-      run();
+      start();
     }
   });
   observer.observe(document.body, { childList: true });
