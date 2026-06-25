@@ -1,0 +1,78 @@
+/* Gestapelte Testimonial-Karten mit Glassmorphism (Vorbild: 21st.dev
+   vaib215/testimonial-cards) - Karten liegen leicht versetzt/gedreht
+   uebereinander, Klick schickt die oberste nach hinten. */
+
+.testimonial-stack {
+  position: relative;
+  max-width: 400px;
+  margin-inline: auto;
+}
+
+.testimonial-stack__deck {
+  position: relative;
+  height: 380px;
+}
+
+.testimonial-stack__card {
+  position: absolute;
+  inset: 0;
+  padding: var(--primitive-spacing-8);
+  border-radius: var(--primitive-radius-2xl);
+  background: rgb(255 255 255 / 0.06);
+  border: 1px solid rgb(255 255 255 / 0.14);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 28px 50px rgb(0 0 0 / 0.45);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+}
+
+.testimonial-stack__stars {
+  color: var(--color-accent);
+  font-size: var(--primitive-fontSize-lg);
+  letter-spacing: 2px;
+  margin-bottom: var(--primitive-spacing-4);
+}
+
+.testimonial-stack__quote {
+  flex-grow: 1;
+  color: var(--color-foreground);
+}
+
+.testimonial-stack__author {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-spacing-3);
+  margin-top: var(--primitive-spacing-5);
+}
+
+.testimonial-stack__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.testimonial-stack__name {
+  font-weight: 700;
+  font-size: var(--primitive-fontSize-sm);
+}
+
+.testimonial-stack__meta {
+  font-size: var(--primitive-fontSize-xs);
+  color: var(--color-muted-foreground);
+}
+
+.testimonial-stack__hint {
+  text-align: center;
+  margin-top: var(--primitive-spacing-6);
+  font-size: var(--primitive-fontSize-xs);
+  color: var(--color-muted-foreground);
+}
+
+@media (max-width: 700px) {
+  .testimonial-stack__deck { height: 420px; }
+}

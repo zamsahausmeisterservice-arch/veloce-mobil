@@ -37,6 +37,7 @@
 <link rel="stylesheet" href="/assets/css/tilt.css">
 <link rel="stylesheet" href="/assets/css/preloader.css">
 <link rel="stylesheet" href="/assets/css/slide-submit.css">
+<link rel="stylesheet" href="/assets/css/testimonial-stack.css">
 </head>
 <body>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;">
@@ -513,40 +514,43 @@
         <span class="eyebrow">Chi siamo</span>
         <h2>Recensioni dei clienti</h2>
       </div>
-      <div class="grid grid--3" data-reveal>
-        <div class="card testimonial" data-tilt>
-          <span class="testimonial__stars">★★★★★</span>
-          <p class="testimonial__quote">«Finalmente niente più stress con il lavaggio dell'auto! Vengono direttamente al parcheggio del mio ufficio, il risultato è sempre impeccabile.»</p>
-          <div class="testimonial__author">
-            <span class="testimonial__avatar">MS</span>
-            <div>
-              <div class="testimonial__name">Marco S.</div>
-              <div class="testimonial__meta">Zurigo</div>
+      <div class="testimonial-stack" data-testimonial-stack>
+        <div class="testimonial-stack__deck">
+          <div class="testimonial-stack__card" data-stack-card>
+            <span class="testimonial-stack__stars">★★★★★</span>
+            <p class="testimonial-stack__quote">«Finalmente niente più stress con il lavaggio dell'auto! Vengono direttamente al parcheggio del mio ufficio, il risultato è sempre impeccabile.»</p>
+            <div class="testimonial-stack__author">
+              <img class="testimonial-stack__avatar" src="/assets/img/testimonials/marco.jpg" alt="Marco S.">
+              <div>
+                <div class="testimonial-stack__name">Marco S.</div>
+                <div class="testimonial-stack__meta">Zurigo</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-stack__card" data-stack-card>
+            <span class="testimonial-stack__stars">★★★★★</span>
+            <p class="testimonial-stack__quote">«Molto puntuali, molto cordiali – e la mia auto sembrava nuova. Come grande viaggiatore, uso regolarmente il pacchetto Premium.»</p>
+            <div class="testimonial-stack__author">
+              <img class="testimonial-stack__avatar" src="/assets/img/testimonials/petra.jpg" alt="Petra H.">
+              <div>
+                <div class="testimonial-stack__name">Petra H.</div>
+                <div class="testimonial-stack__meta">Berna</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-stack__card" data-stack-card>
+            <span class="testimonial-stack__stars">★★★★★</span>
+            <p class="testimonial-stack__quote">«Dopo il trasporto del cane i sedili erano di nuovo perfetti. Prenotazione semplice, risultato eccellente.»</p>
+            <div class="testimonial-stack__author">
+              <img class="testimonial-stack__avatar" src="/assets/img/testimonials/daniel.jpg" alt="Daniel B.">
+              <div>
+                <div class="testimonial-stack__name">Daniel B.</div>
+                <div class="testimonial-stack__meta">Lucerna</div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="card testimonial" data-tilt>
-          <span class="testimonial__stars">★★★★★</span>
-          <p class="testimonial__quote">«Molto puntuali, molto cordiali – e la mia auto sembrava nuova. Come grande viaggiatore, uso regolarmente il pacchetto Premium.»</p>
-          <div class="testimonial__author">
-            <span class="testimonial__avatar">PH</span>
-            <div>
-              <div class="testimonial__name">Petra H.</div>
-              <div class="testimonial__meta">Berna</div>
-            </div>
-          </div>
-        </div>
-        <div class="card testimonial" data-tilt>
-          <span class="testimonial__stars">★★★★★</span>
-          <p class="testimonial__quote">«Dopo il trasporto del cane i sedili erano di nuovo perfetti. Prenotazione semplice, risultato eccellente.»</p>
-          <div class="testimonial__author">
-            <span class="testimonial__avatar">DB</span>
-            <div>
-              <div class="testimonial__name">Daniel B.</div>
-              <div class="testimonial__meta">Lucerna</div>
-            </div>
-          </div>
-        </div>
+        <p class="testimonial-stack__hint">Clicca per cambiare</p>
       </div>
     </div>
   </section>
@@ -735,6 +739,7 @@
 <script src="/assets/js/annotated.js" defer></script>
 <script src="/assets/js/reveal.js" defer></script>
 <script src="/assets/js/tabs.js" defer></script>
+<script src="/assets/js/testimonial-stack.js" defer></script>
 <script src="/assets/js/fan-carousel.js" defer></script>
 <script src="/assets/js/magnetic.js" defer></script>
 <script src="/assets/js/info-card.js" defer></script>
