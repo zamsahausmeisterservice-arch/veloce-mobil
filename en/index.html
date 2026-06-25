@@ -36,6 +36,7 @@
 <link rel="stylesheet" href="/assets/css/info-card.css">
 <link rel="stylesheet" href="/assets/css/tilt.css">
 <link rel="stylesheet" href="/assets/css/preloader.css">
+<link rel="stylesheet" href="/assets/css/slide-submit.css">
 </head>
 <body>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;">
@@ -635,7 +636,15 @@
             <label for="nachricht">Message (optional)</label>
             <textarea id="nachricht" name="nachricht" rows="3"></textarea>
           </div>
-          <button type="submit" class="btn btn--primary btn--block">Send request</button>
+          <div class="slide-submit" data-slide-submit>
+            <span class="slide-submit__label">Slide to send</span>
+            <div class="slide-submit__fill" data-slide-fill></div>
+            <button type="button" class="slide-submit__handle" data-slide-handle aria-label="Send request">
+              <svg class="icon-send" viewBox="0 0 24 24"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg>
+              <svg class="icon-loading" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9"/></svg>
+              <svg class="icon-success" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </button>
+          </div>
           <p class="form-status" data-msg-success="Thanks! We'll get back to you as soon as possible." data-msg-error="Something went wrong. Please try again or message us on WhatsApp." data-msg-noendpoint="The form isn't active yet."></p>
         </form>
 
