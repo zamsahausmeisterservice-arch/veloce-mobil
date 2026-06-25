@@ -1,0 +1,85 @@
+/* Animated Tabs fuer "In drei Schritten..." (Vorbild: 21st.dev
+   chetanverma16/animated-tabs) - ein Pill-Indikator gleitet zum
+   aktiven Tab, der Inhalt darunter blendet weich um. */
+
+.tabs__list-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--primitive-spacing-8);
+}
+
+.tabs__list {
+  position: relative;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-spacing-1);
+  padding: var(--primitive-spacing-1);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--primitive-radius-full);
+}
+
+.tabs__tab {
+  position: relative;
+  z-index: 1;
+  padding: var(--primitive-spacing-3) var(--primitive-spacing-5);
+  border-radius: var(--primitive-radius-full);
+  font-size: var(--primitive-fontSize-sm);
+  font-weight: 700;
+  color: var(--color-muted-foreground);
+  white-space: nowrap;
+  transition: color var(--primitive-duration-normal) ease;
+}
+
+.tabs__tab[aria-selected="true"] {
+  color: var(--color-accent-foreground);
+}
+
+.tabs__indicator {
+  position: absolute;
+  top: var(--primitive-spacing-1);
+  bottom: var(--primitive-spacing-1);
+  left: 0;
+  border-radius: var(--primitive-radius-full);
+  background: var(--color-accent);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+}
+
+.tabs__panels {
+  max-width: 520px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.tabs__panel {
+  display: none;
+}
+
+.tabs__panel.is-active {
+  display: block;
+  animation: tabs-fade-in 0.4s ease;
+}
+
+@keyframes tabs-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tabs__panel .step__number {
+  font-size: var(--primitive-fontSize-5xl);
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-border-strong);
+  display: block;
+  margin-bottom: var(--primitive-spacing-3);
+}
+
+.tabs__panel h3 { margin-bottom: var(--primitive-spacing-2); }
+
+@media (max-width: 700px) {
+  .tabs__tab {
+    padding: var(--primitive-spacing-2) var(--primitive-spacing-4);
+    font-size: var(--primitive-fontSize-xs);
+  }
+}

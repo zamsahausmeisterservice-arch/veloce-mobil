@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="/assets/css/hero.css">
 <link rel="stylesheet" href="/assets/css/annotated.css">
 <link rel="stylesheet" href="/assets/css/pricing2.css">
-<link rel="stylesheet" href="/assets/css/card-stack.css">
+<link rel="stylesheet" href="/assets/css/tabs.css">
 <link rel="stylesheet" href="/assets/css/fan-carousel.css">
 <link rel="stylesheet" href="/assets/css/motion-footer.css">
 <link rel="stylesheet" href="/assets/css/info-card.css">
@@ -241,14 +241,22 @@
         <span class="eyebrow">È semplice</span>
         <h2>In tre passi verso un'auto splendente</h2>
       </div>
-      <div class="card-stack" data-card-stack>
-        <div class="card-stack__deck">
-          <div class="card-stack__card" data-stack-card>
+      <div class="tabs" data-tabs>
+        <div class="tabs__list-wrap">
+          <div class="tabs__list" role="tablist">
+            <span class="tabs__indicator" data-tab-indicator></span>
+            <button class="tabs__tab" data-tab-trigger data-tab-target="step-1" aria-selected="true">Prenota online</button>
+            <button class="tabs__tab" data-tab-trigger data-tab-target="step-2" aria-selected="false">Veniamo da voi</button>
+            <button class="tabs__tab" data-tab-trigger data-tab-target="step-3" aria-selected="false">Godetevi il risultato</button>
+          </div>
+        </div>
+        <div class="tabs__panels">
+          <div class="tabs__panel is-active" data-tab-panel="step-1">
             <span class="step__number">01</span>
             <h3>Prenota online</h3>
             <p>Scegli veicolo, luogo e pacchetto desiderato – in pochi clic.</p>
           </div>
-          <div class="card-stack__card" data-stack-card>
+          <div class="tabs__panel" data-tab-panel="step-2">
             <span class="step__number">02</span>
             <h3 style="justify-content:center;display:flex;align-items:center;gap:.5rem;">
               Veniamo da voi
@@ -262,16 +270,11 @@
             </h3>
             <p>All'appuntamento concordato arriviamo con tutta l'attrezzatura necessaria.</p>
           </div>
-          <div class="card-stack__card" data-stack-card>
+          <div class="tabs__panel" data-tab-panel="step-3">
             <span class="step__number">03</span>
             <h3>Godetevi il risultato</h3>
             <p>La vostra auto splende – senza che abbiate dovuto muovere un dito.</p>
           </div>
-        </div>
-        <div class="card-stack__nav">
-          <button class="card-stack__arrow" data-stack-prev aria-label="Passo precedente">&lsaquo;</button>
-          <div class="card-stack__dots" data-stack-dots></div>
-          <button class="card-stack__arrow" data-stack-next aria-label="Passo successivo">&rsaquo;</button>
         </div>
       </div>
     </div>
@@ -719,7 +722,7 @@
 <script src="/assets/js/i18n.js" defer></script>
 <script src="/assets/js/annotated.js" defer></script>
 <script src="/assets/js/reveal.js" defer></script>
-<script src="/assets/js/card-stack.js" defer></script>
+<script src="/assets/js/tabs.js" defer></script>
 <script src="/assets/js/fan-carousel.js" defer></script>
 <script src="/assets/js/magnetic.js" defer></script>
 <script src="/assets/js/info-card.js" defer></script>
