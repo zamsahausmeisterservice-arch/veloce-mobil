@@ -128,6 +128,45 @@
   fill: none;
 }
 
+/* ---- Leistungen-Stack: Bild links, Text rechts ---- */
+.grid--stack .card--photo {
+  display: flex;
+  align-items: stretch;
+}
+
+.grid--stack .card--photo .card__photo {
+  width: 42%;
+  height: auto;
+  aspect-ratio: auto;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.grid--stack .card--photo .card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.grid--stack .card--photo .card__icon {
+  position: static;
+  margin-top: 0;
+  margin-bottom: var(--primitive-spacing-4);
+}
+
+@media (max-width: 640px) {
+  .grid--stack .card--photo {
+    flex-direction: column;
+  }
+
+  .grid--stack .card--photo .card__photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+  }
+}
+
 .card h3 {
   margin-bottom: var(--primitive-spacing-2);
 }
