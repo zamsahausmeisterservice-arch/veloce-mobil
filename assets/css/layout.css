@@ -214,6 +214,12 @@
 .grid--4 { grid-template-columns: repeat(4, 1fr); }
 .grid--3 { grid-template-columns: repeat(3, 1fr); }
 .grid--2 { grid-template-columns: repeat(2, 1fr); }
+.grid--stack {
+  grid-template-columns: 1fr;
+  max-width: 640px;
+  margin-inline: auto;
+  gap: var(--primitive-spacing-8);
+}
 
 @media (max-width: 900px) {
   .grid--4 { grid-template-columns: repeat(2, 1fr); }

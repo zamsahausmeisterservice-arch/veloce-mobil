@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="/assets/css/hero.css">
 <link rel="stylesheet" href="/assets/css/annotated.css">
 <link rel="stylesheet" href="/assets/css/pricing2.css">
-<link rel="stylesheet" href="/assets/css/carousel.css">
+<link rel="stylesheet" href="/assets/css/card-stack.css">
 <link rel="stylesheet" href="/assets/css/fan-carousel.css">
 <link rel="stylesheet" href="/assets/css/motion-footer.css">
 <link rel="stylesheet" href="/assets/css/info-card.css">
@@ -38,6 +38,13 @@
 <link rel="stylesheet" href="/assets/css/preloader.css">
 </head>
 <body>
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;">
+  <filter id="hero-goo">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur"/>
+    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo"/>
+    <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+  </filter>
+</svg>
 
 <div class="preloader" data-preloader data-words='["Rapide.", "Minutieux.", "Délicat."]'>
   <svg class="preloader__panel" viewBox="0 0 100 130" preserveAspectRatio="none" aria-hidden="true">
@@ -231,47 +238,37 @@
         <span class="eyebrow">C'est simple</span>
         <h2>Trois étapes pour une voiture impeccable</h2>
       </div>
-      <div class="carousel" data-carousel>
-        <div class="carousel__viewport">
-          <div class="carousel__track" data-carousel-track>
-            <div class="carousel__slide" data-carousel-slide>
-              <span class="step__number">01</span>
-              <h3>Réservez en ligne</h3>
-              <p>Choisissez votre véhicule, le lieu et la formule souhaitée – en quelques clics.</p>
-            </div>
-            <div class="carousel__slide" data-carousel-slide>
-              <span class="step__number">02</span>
-              <h3 style="justify-content:center;display:flex;align-items:center;gap:.5rem;">
-                Nous venons à vous
-                <span class="info-wrap">
-                  <button class="info-trigger" data-info-trigger aria-expanded="false" aria-controls="info-ablauf">i</button>
-                  <span class="info-card" id="info-ablauf" role="tooltip">
-                    <p>Vous nous confiez brièvement la clé. Nous avons seulement besoin d'un <strong>raccordement eau et électricité</strong> sur place (par ex. tuyau de jardin &amp; prise).</p>
-                    <p>Nous nettoyons ensuite votre véhicule à l'intérieur et à l'extérieur, puis vous rendons la clé – vous pouvez vérifier le résultat directement sur place.</p>
-                  </span>
+      <div class="card-stack" data-card-stack>
+        <div class="card-stack__deck">
+          <div class="card-stack__card" data-stack-card>
+            <span class="step__number">01</span>
+            <h3>Réservez en ligne</h3>
+            <p>Choisissez votre véhicule, le lieu et la formule souhaitée – en quelques clics.</p>
+          </div>
+          <div class="card-stack__card" data-stack-card>
+            <span class="step__number">02</span>
+            <h3 style="justify-content:center;display:flex;align-items:center;gap:.5rem;">
+              Nous venons à vous
+              <span class="info-wrap">
+                <button class="info-trigger" data-info-trigger aria-expanded="false" aria-controls="info-ablauf">i</button>
+                <span class="info-card" id="info-ablauf" role="tooltip">
+                  <p>Vous nous confiez brièvement la clé. Nous avons seulement besoin d'un <strong>raccordement eau et électricité</strong> sur place (par ex. tuyau de jardin &amp; prise).</p>
+                  <p>Nous nettoyons ensuite votre véhicule à l'intérieur et à l'extérieur, puis vous rendons la clé – vous pouvez vérifier le résultat directement sur place.</p>
                 </span>
-              </h3>
-              <p>Au rendez-vous convenu, nous arrivons avec tout l'équipement nécessaire.</p>
-            </div>
-            <div class="carousel__slide" data-carousel-slide>
-              <span class="step__number">03</span>
-              <h3>Profitez du résultat</h3>
-              <p>Votre voiture brille – sans que vous ayez eu à lever le petit doigt.</p>
-            </div>
+              </span>
+            </h3>
+            <p>Au rendez-vous convenu, nous arrivons avec tout l'équipement nécessaire.</p>
+          </div>
+          <div class="card-stack__card" data-stack-card>
+            <span class="step__number">03</span>
+            <h3>Profitez du résultat</h3>
+            <p>Votre voiture brille – sans que vous ayez eu à lever le petit doigt.</p>
           </div>
         </div>
-        <div class="carousel__nav">
-          <button class="carousel__arrow" data-carousel-prev aria-label="Étape précédente">
-            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="carousel__dots">
-            <button class="carousel__dot" data-carousel-dot aria-current="true" aria-label="Étape 1"></button>
-            <button class="carousel__dot" data-carousel-dot aria-current="false" aria-label="Étape 2"></button>
-            <button class="carousel__dot" data-carousel-dot aria-current="false" aria-label="Étape 3"></button>
-          </div>
-          <button class="carousel__arrow" data-carousel-next aria-label="Étape suivante">
-            <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
+        <div class="card-stack__nav">
+          <button class="card-stack__arrow" data-stack-prev aria-label="Étape précédente">&lsaquo;</button>
+          <div class="card-stack__dots" data-stack-dots></div>
+          <button class="card-stack__arrow" data-stack-next aria-label="Étape suivante">&rsaquo;</button>
         </div>
       </div>
     </div>
@@ -284,7 +281,7 @@
         <span class="eyebrow">Prestations</span>
         <h2>Un nettoyage selon vos besoins</h2>
       </div>
-      <div class="grid grid--4" data-reveal>
+      <div class="grid grid--stack" data-reveal>
         <div class="card card--photo" data-tilt>
           <img class="card__photo" src="/assets/img/leistungen/aussenreinigung.jpg" alt="Extérieur &amp; soin de la carrosserie" loading="lazy">
           <div class="card__body">
@@ -713,12 +710,13 @@
 </a>
 
 <script src="/assets/js/preloader.js" defer></script>
+<script src="/assets/js/hero-goo.js" defer></script>
 <script src="/assets/js/hero-scroll.js" defer></script>
 <script src="/assets/js/nav.js" defer></script>
 <script src="/assets/js/i18n.js" defer></script>
 <script src="/assets/js/annotated.js" defer></script>
 <script src="/assets/js/reveal.js" defer></script>
-<script src="/assets/js/carousel.js" defer></script>
+<script src="/assets/js/card-stack.js" defer></script>
 <script src="/assets/js/fan-carousel.js" defer></script>
 <script src="/assets/js/magnetic.js" defer></script>
 <script src="/assets/js/info-card.js" defer></script>
