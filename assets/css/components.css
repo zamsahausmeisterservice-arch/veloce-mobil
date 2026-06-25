@@ -186,43 +186,23 @@
   padding-top: var(--primitive-spacing-3);
 }
 
-.card__steps summary {
-  list-style: none;
-  cursor: pointer;
+.card__steps .info-wrap {
   font-size: var(--primitive-fontSize-sm);
   font-weight: 700;
   color: var(--color-accent);
-  display: flex;
-  align-items: center;
-  gap: var(--primitive-spacing-1);
 }
 
-.card__steps summary::-webkit-details-marker {
-  display: none;
-}
-
-.card__steps summary::after {
-  content: "+";
-  margin-left: auto;
-  transition: transform var(--primitive-duration-normal) ease;
-}
-
-.card__steps[open] summary::after {
-  transform: rotate(45deg);
-}
-
-.card__steps ol {
+.info-card ol {
   list-style: decimal;
   padding-left: 1.1rem;
-  margin-top: var(--primitive-spacing-3);
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: var(--primitive-spacing-2);
 }
 
-.card__steps li {
-  font-size: var(--primitive-fontSize-sm);
-  color: var(--color-muted-foreground);
+.info-card li {
+  color: var(--color-foreground);
 }
 
 /* ===== Echte Einsatz-Videos ===== */
